@@ -46,7 +46,7 @@ export const signupHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error: error.message,
       }
     );
   }
