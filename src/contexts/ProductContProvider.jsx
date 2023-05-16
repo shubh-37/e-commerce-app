@@ -49,9 +49,12 @@ export default function ProductContProvider({ children }){
         }
     }
 
-    async function addToCart(){
+    async function addToCart(product){
         try {
-            const response = await fetch()
+            const response = await fetch("/api/user/cart", {
+                method: "POST",
+                body: product
+            })
         } catch (error) {
             
         }
