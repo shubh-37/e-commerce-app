@@ -4,6 +4,10 @@ import Mockman from "mockman-js";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LandingPage from "./pages/LandingPage";
+import ProductListing from "./pages/ProductListing";
+import Wishlist from "./pages/WishlistPage";
+import Cart from "./pages/CartPage";
+import Product from "./pages/SingleProductPage";
 
 function App() {
   return (
@@ -12,6 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/mockman" element={<Mockman />} />
+        <Route path="/products" element={<ProductListing />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:prodId" element={<Product />} />
       </Routes>
       <Footer />  
     </div>
