@@ -16,6 +16,10 @@ export default function reducer(state, action){
             ...state,
             categories: action.payload
         }
+        case "ADD_TO_CART" : return {
+            ...state,
+            cartItems: [...state.cartItems, action.payload]
+        }
         default : return {
             ...state
         }
