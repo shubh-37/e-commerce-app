@@ -2,7 +2,7 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SearchIcon from '@material-ui/icons/Search';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 export default function Header(){
     return(
         <div className="header">
@@ -11,7 +11,8 @@ export default function Header(){
                     <SearchIcon />{" "}
             </Badge>
             <input type="text" name="" id="" placeholder="Search"/>
-            <button>Login</button>
+            <Link to="/login"><button>Login</button></Link>
+            <Link to="/signup"><button>Sign Up</button></Link>
             <div>
                 <Badge color="secondary">
                     <NavLink to="/cart"><ShoppingCartIcon /></NavLink>
