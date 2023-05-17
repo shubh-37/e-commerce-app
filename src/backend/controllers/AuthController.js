@@ -91,7 +91,7 @@ export const loginHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error : error.message,
       }
     );
   }
