@@ -8,6 +8,15 @@ export default function Product(){
 
     const selectedProd = state.refData.find(({id}) => id === prodId);
     return (
-        <h2>{selectedProd?.title}</h2>
+        <div>
+            <img src="https://picsum.photos/150/150" alt="book" />
+            <h2>Title: {selectedProd?.title}</h2>
+            <p>Author: {selectedProd?.author}</p>
+            <p>Price: {selectedProd?.price}</p>
+            <p>Category: {selectedProd?.categoryName}</p>
+            <p>Description: {selectedProd?.desc}</p>
+            <button>Add to cart</button>
+            <button>Add to wishlist</button>
+        </div>  
     )
 }
