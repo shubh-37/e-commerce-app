@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Filter from "../components/Filters";
 import { productContext } from "../contexts/ProductContProvider";
 
 export default function ProductListing(){
     const {state, handleCart} = useContext(productContext);
     return (
         <div>
+            <Filter />
             <ul>
                 {
                     state?.allProducts.map((item) => (
