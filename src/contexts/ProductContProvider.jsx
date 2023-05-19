@@ -9,7 +9,14 @@ export default function ProductContProvider({ children }){
         refData: [],
         categories: [],
         wishListItems: [],
-        cartItems: []
+        cartItems: [],
+        sortPrice: null,
+        rating: null,
+        searchBar: "",
+        fictionCat: false,
+        nonFictionCat: false,
+        horrorCat: false,
+        price: 200
     });
 
     const [isLoading, setLoading] = useState(false);
@@ -107,9 +114,11 @@ export default function ProductContProvider({ children }){
         console.log("clicked")
         loginTestUser();
     }
+
     useEffect(() => {
         getProducts();
         getCategory();
+        console.log(state.allProducts);
     } , [])
     return (
         <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin}}>{ children }</productContext.Provider>
