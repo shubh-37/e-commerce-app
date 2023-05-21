@@ -1,12 +1,5 @@
 export default function reducer(state, action){
     switch(action.type){
-        case "CATEGORY": {
-            const filteredProd = state?.refData.filter(({categoryName}) => categoryName === action.payload);
-            return {
-                ...state,
-                allProducts: filteredProd
-        }
-    }
         case "ADD_PRODUCTS": return {
             ...state,
             allProducts: action.payload,
@@ -18,7 +11,11 @@ export default function reducer(state, action){
         }
         case "ADD_TO_CART" : return {
             ...state,
-            cartItems: [...state.cartItems, action.payload]
+            cartItems: action.payload
+        }
+        case "ADD_TO_WISHLIST": return{
+            ...state,
+            wishlistItems: action.payload
         }
         case "SORT": return {
             ...state,
@@ -29,10 +26,9 @@ export default function reducer(state, action){
             rating: action.payload
         }
         case "CHECKBOX": {
-            const selectedCat = `${action.payload}Cat`;
             return {
                 ...state,
-                [selectedCat]: !state[selectedCat]
+                category: state.category.includes(action.payload) ? state.category.filter((item) => item !== action.payload) : [...state.category, action.payload]
             }
         }
         default : return {
