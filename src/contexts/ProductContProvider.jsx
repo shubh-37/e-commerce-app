@@ -21,6 +21,56 @@ export default function ProductContProvider({ children }){
 
     const [isLoading, setLoading] = useState(false);
 
+    const sortedProd = state.sortPrice ? state?.allProducts.sort((a,b) => state.sortPrice === "hTl" ? b.price - a.price : a.price - b.price) : state.allProducts;
+
+    const checkedProd = (() => {
+        const { fictionCat, nonFictionCat, horrorCat } = state;
+        let returnData = [];
+        if (!fictionCat && !nonFictionCat && ! horrorCat) {
+          returnData = sortedProd;
+        } else if (!fictionCat && !nonFictionCat) {
+          returnData = 
+            sortedProd.filter((item) => item.categoryName !==  "horror")
+        } else if (!fictionCat && !horrorCat) {
+          returnData = sortedProd.filter((item) => item.categoryName !== "non-fiction");
+        } else {
+            returnData = sortedProd.filter((item) => item.categoryName !== "fiction");  
+        }
+        return returnData;
+      })();
+
+    const ratedProd = (() => {
+        const { rating } = state;
+        let returnData = [];
+        if(rating) {
+            switch(rating){
+                case "5": {
+                    returnData = checkedProd.filter(( { rating }) => rating === "5");
+                    break;
+                }
+                case "4": {
+                    returnData = checkedProd.filter(( { rating }) => rating === "4");
+                    break;
+                }
+                case "3": {
+                    returnData = checkedProd.filter(( { rating }) => rating === "3");
+                    break;
+                }
+                case "2": {
+                    returnData = checkedProd.filter(( { rating }) => rating === "2");
+                    break;
+                }
+                default : {
+                    console.log("something wrong!")
+                    break;
+                }
+            }
+        }else{
+            returnData = checkedProd;
+        }
+        return returnData;
+    })();  
+
     async function getProducts(){
         try {
             const response = await fetch("/api/products");
@@ -101,8 +151,6 @@ export default function ProductContProvider({ children }){
     }
 
     function handleCart(product){
-        // dispatch({type: "ADD_TO_CART", payload: product})
-        // console.log(state.cartItems);
         addToCart(product);
         getCartItems();
     }
@@ -114,6 +162,18 @@ export default function ProductContProvider({ children }){
         console.log("clicked")
         loginTestUser();
     }
+    
+    function sortHandler(val){
+        dispatch({ type: "SORT", payload: val})
+    }
+
+    function categoryHandler(e){
+        dispatch({ type: "CHECKBOX", payload: e.target.value})
+    }
+
+    function ratingHandler(val){
+        dispatch({ type: "RATING", payload: val})
+    }
 
     useEffect(() => {
         getProducts();
@@ -121,6 +181,6 @@ export default function ProductContProvider({ children }){
         console.log(state.allProducts);
     } , [])
     return (
-        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin}}>{ children }</productContext.Provider>
+        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd}}>{ children }</productContext.Provider>
     )
 }
