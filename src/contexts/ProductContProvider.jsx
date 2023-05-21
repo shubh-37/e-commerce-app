@@ -8,35 +8,25 @@ export default function ProductContProvider({ children }){
         allProducts: [],
         refData: [],
         categories: [],
-        wishListItems: [],
+        wishlistItems: [],
         cartItems: [],
         sortPrice: null,
         rating: null,
         searchBar: "",
-        fictionCat: false,
-        nonFictionCat: false,
-        horrorCat: false,
+        category: [],
         price: 200
     });
 
     const [isLoading, setLoading] = useState(false);
-
-    const sortedProd = state.sortPrice ? state?.allProducts.sort((a,b) => state.sortPrice === "hTl" ? b.price - a.price : a.price - b.price) : state.allProducts;
+    const sortedProd = state.sortPrice ? state?.allProducts.sort((a,b) => state.sortPrice === "hTl" ? b.price - a.price : a.price - b.price) : state?.allProducts;
 
     const checkedProd = (() => {
-        const { fictionCat, nonFictionCat, horrorCat } = state;
-        let returnData = [];
-        if (!fictionCat && !nonFictionCat && ! horrorCat) {
-          returnData = sortedProd;
-        } else if (!fictionCat && !nonFictionCat) {
-          returnData = 
-            sortedProd.filter((item) => item.categoryName !==  "horror")
-        } else if (!fictionCat && !horrorCat) {
-          returnData = sortedProd.filter((item) => item.categoryName !== "non-fiction");
-        } else {
-            returnData = sortedProd.filter((item) => item.categoryName !== "fiction");  
-        }
-        return returnData;
+        const { category } = state;
+        if(category.length > 0){
+            return sortedProd.filter(({categoryName}) => category.some((item) => item === categoryName));
+        }else{
+            return sortedProd;
+        } 
       })();
 
     const ratedProd = (() => {
@@ -45,19 +35,19 @@ export default function ProductContProvider({ children }){
         if(rating) {
             switch(rating){
                 case "5": {
-                    returnData = checkedProd.filter(( { rating }) => rating === "5");
+                    returnData = checkedProd?.filter(( { rating }) => rating === "5");
                     break;
                 }
                 case "4": {
-                    returnData = checkedProd.filter(( { rating }) => rating === "4");
+                    returnData = checkedProd?.filter(( { rating }) => rating === "4");
                     break;
                 }
                 case "3": {
-                    returnData = checkedProd.filter(( { rating }) => rating === "3");
+                    returnData = checkedProd?.filter(( { rating }) => rating === "3");
                     break;
                 }
                 case "2": {
-                    returnData = checkedProd.filter(( { rating }) => rating === "2");
+                    returnData = checkedProd?.filter(( { rating }) => rating === "2");
                     break;
                 }
                 default : {
@@ -76,8 +66,7 @@ export default function ProductContProvider({ children }){
             const response = await fetch("/api/products");
             if(response.status === 200){
                 const data = await response.json();
-                state.allProducts = data.products;
-                state.refData = data.products;
+                dispatch({type: "ADD_PRODUCTS", payload: data.products});
             }
         } catch (error) {
             console.log(error);
@@ -90,7 +79,7 @@ export default function ProductContProvider({ children }){
             const response = await fetch("/api/categories");
             if(response.status === 200){
                 const data = await response.json();
-                state.categories = data.categories;
+                dispatch({type: "CATEGORIES", payload: data.categories});
             }
         } catch (error) {
             console.log(error);   
@@ -99,15 +88,33 @@ export default function ProductContProvider({ children }){
         }
     }
 
-    async function getCartItems(){
+    // async function getCartItems(){
+    //     try {
+    //         const response = await fetch("/api/user/cart", {
+    //             headers: {
+    //                 authorization: encodedToken
+    //             }
+    //         });
+    //         const data = await response.json();
+    //     } catch (error) {
+            
+    //     }
+    // }
+
+    async function addToWishlist(product){
         try {
-            const response = await fetch("/api/user/cart", {
+            const response = await fetch("/api/user/wishlist", {
+                method: "POST",
                 headers: {
-                    authorization: encodedToken
-                }
+                    authorization: encodedToken,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    product
+                })
             });
             const data = await response.json();
-            console.log(data);
+            dispatch({type: "ADD_TO_WISHLIST", payload: data.wishlist});
         } catch (error) {
             
         }
@@ -118,12 +125,15 @@ export default function ProductContProvider({ children }){
             const response = await fetch("/api/user/cart", {
                 method: "POST",
                 headers: {
-                    authorization: encodedToken
+                    authorization: encodedToken,
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(product)
-            })
+                body: JSON.stringify({
+                    product
+                })
+            });
             const data = await response.json();
-            console.log(data);
+            dispatch({type: "ADD_TO_CART", payload: data.cart});
         } catch (error) {
             console.log(error)
         }
@@ -143,7 +153,6 @@ export default function ProductContProvider({ children }){
                 body: JSON.stringify(user)
             });
             const data = await response.json();
-            console.log(data.encodedToken);
             localStorage.setItem("token", data.encodedToken);
         } catch (error) {
             console.log(error);
@@ -152,14 +161,16 @@ export default function ProductContProvider({ children }){
 
     function handleCart(product){
         addToCart(product);
-        getCartItems();
+        // getCartItems();
+    }
+    function handleWishlist(prod){
+        addToWishlist(prod);
     }
     function showCategoryProd(val){
-        dispatch({type: "CATEGORY", payload: val})
+        dispatch({type: "CHECKBOX", payload: val})
     }
 
     function testLogin(){
-        console.log("clicked")
         loginTestUser();
     }
     
@@ -167,8 +178,8 @@ export default function ProductContProvider({ children }){
         dispatch({ type: "SORT", payload: val})
     }
 
-    function categoryHandler(e){
-        dispatch({ type: "CHECKBOX", payload: e.target.value})
+    function categoryHandler(val){
+        dispatch({ type: "CHECKBOX", payload: val})
     }
 
     function ratingHandler(val){
@@ -178,9 +189,8 @@ export default function ProductContProvider({ children }){
     useEffect(() => {
         getProducts();
         getCategory();
-        console.log(state.allProducts);
     } , [])
     return (
-        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd}}>{ children }</productContext.Provider>
+        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist}}>{ children }</productContext.Provider>
     )
 }
