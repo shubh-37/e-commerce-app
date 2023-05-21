@@ -20,6 +20,21 @@ export default function reducer(state, action){
             ...state,
             cartItems: [...state.cartItems, action.payload]
         }
+        case "SORT": return {
+            ...state,
+            sortPrice: action.payload
+        }
+        case "RATING": return {
+            ...state,
+            rating: action.payload
+        }
+        case "CHECKBOX": {
+            const selectedCat = `${action.payload}Cat`;
+            return {
+                ...state,
+                [selectedCat]: !state[selectedCat]
+            }
+        }
         default : return {
             ...state
         }
