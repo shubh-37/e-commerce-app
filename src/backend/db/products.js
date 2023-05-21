@@ -12,6 +12,8 @@ export const products = [
     author: "Shiv Khera",
     price: "5000",
     categoryName: "non-fiction",
+    rating: "3",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -19,6 +21,8 @@ export const products = [
     author: "Junaid Qureshi",
     price: "3000",
     categoryName: "horror",
+    rating: "2",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -26,6 +30,8 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     categoryName: "non-fiction",
+    rating: "4",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -33,6 +39,8 @@ export const products = [
     author: "James Clear",
     price: "1000",
     categoryName: "non-fiction",
+    rating: "5",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -40,6 +48,8 @@ export const products = [
     author: "Agatha Christie",
     price: "1000",
     categoryName: "fiction",
+    rating: "4",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -47,6 +57,8 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     categoryName: "fiction",
+    rating: "4",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -54,6 +66,8 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     categoryName: "horror",
+    rating: "2",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -61,6 +75,8 @@ export const products = [
     author: "Josh Mallerman",
     price: "1000",
     categoryName: "horror",
+    rating: "4",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -68,6 +84,8 @@ export const products = [
     author: "Shirley Jackson",
     price: "1000",
     categoryName: "horror",
+    rating: "3",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -75,6 +93,8 @@ export const products = [
     author: "Stephen King",
     price: "1000",
     categoryName: "horror",
+    rating: "4",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -82,6 +102,8 @@ export const products = [
     author: "JK Rowling",
     price: "1000",
     categoryName: "fiction",
+    rating: "5",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -89,6 +111,8 @@ export const products = [
     author: "JRR Tolkien",
     price: "1000",
     categoryName: "fiction",
+    rating: "5",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -96,6 +120,8 @@ export const products = [
     author: "Agatha Christie",
     price: "1000",
     categoryName: "fiction",
+    rating: "5",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -103,6 +129,8 @@ export const products = [
     author: "Josh Mallerman",
     price: "1000",
     categoryName: "non-fiction",
+    rating: "3",
+    desc: "lorem ipsum dimsum"
   },
   {
     _id: uuid(),
@@ -110,5 +138,7 @@ export const products = [
     author: "Ankur Warikoo",
     price: "1000",
     categoryName: "non-fiction",
+    rating: "2",
+    desc: "lorem ipsum dimsum"
   },
 ];
