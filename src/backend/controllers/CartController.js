@@ -59,7 +59,7 @@ export const addItemToCartHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error: error.message,
       }
     );
   }
