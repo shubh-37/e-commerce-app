@@ -6,11 +6,14 @@ export default function Wishlist(){
 
     return (
         <div>
+            <h2>My Wishlist</h2>
             <ul>
                 {
                     state?.wishlistItems?.map(item => (
                         <li>
                             {item.title}
+                            {item.price}
+                            <button>Move to cart</button>
                         </li>
                     ))
                 }
