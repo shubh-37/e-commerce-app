@@ -4,7 +4,9 @@ import Filter from "../components/Filters";
 import { productContext } from "../contexts/ProductContProvider";
 
 export default function ProductListing(){
-    const {ratedProd, handleCart, handleWishlist} = useContext(productContext);
+    const {ratedProd, handleCart, handleWishlist, state} = useContext(productContext);
+    const foundC = (prodName) =>  state.cartItems.find(({title}) => title === prodName);
+    const foundWL = (prodName) => state.wishlistItems.find(({title}) => title === prodName);
     return (
         <div>
             <Filter />
@@ -17,8 +19,8 @@ export default function ProductListing(){
                             <p>Price: Rs {item.price}</p>
                             <p>Genre: {item.categoryName}</p>
                             <p>Rating: {item.rating} stars</p>
-                            <button onClick={() => handleCart(item)}>Add to cart</button>
-                            <button onClick={() => handleWishlist(item)}>Add to wishlist</button>
+                            {foundC(item.title) ?<Link to="/cart">Go to cart</Link> : <button onClick={() => handleCart(item)}>Add to cart</button>}
+                            <button onClick={() => handleWishlist(item)} disabled={foundWL(item.title)}>{foundWL(item.title) ? "Added to wishlist" : "Add to wishlist"}</button>
                         </li>
                     ))
                 }
