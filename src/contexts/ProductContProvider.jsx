@@ -88,18 +88,21 @@ export default function ProductContProvider({ children }){
         }
     }
 
-    // async function getCartItems(){
-    //     try {
-    //         const response = await fetch("/api/user/cart", {
-    //             headers: {
-    //                 authorization: encodedToken
-    //             }
-    //         });
-    //         const data = await response.json();
-    //     } catch (error) {
-            
-    //     }
-    // }
+    async function delCartItems(prodId){
+        console.log(prodId)
+        try {
+            const response = await fetch(`/api/user/cart/${prodId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: encodedToken
+                }
+            });
+            const data = await response.json();
+            dispatch({type: "ADD_TO_CART", payload: data.cart});
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     async function addToWishlist(product){
         try {
@@ -117,6 +120,27 @@ export default function ProductContProvider({ children }){
             dispatch({type: "ADD_TO_WISHLIST", payload: data.wishlist});
         } catch (error) {
             
+        }
+    }
+
+    async function cartQty(obj){
+        try {
+            const response = await fetch(`/api/user/cart/${obj.prodId}`, {
+                method: "POST",
+                headers: {
+                    authorization: encodedToken,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    action: {
+                        type : obj.action
+                    }
+                })
+            });
+            const data = await response.json();
+            dispatch({type: "ADD_TO_CART", payload: data.cart});
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -161,7 +185,17 @@ export default function ProductContProvider({ children }){
 
     function handleCart(product){
         addToCart(product);
-        // getCartItems();
+        
+    }
+    function removeItem(productId){
+        delCartItems(productId);
+        
+    }
+    function incrementItem(prodId){
+        cartQty({action : "increment", prodId});
+    }
+    function decrementItem(prodId){
+        cartQty({action : "decrement", prodId});
     }
     function handleWishlist(prod){
         addToWishlist(prod);
@@ -191,6 +225,6 @@ export default function ProductContProvider({ children }){
         getCategory();
     } , [])
     return (
-        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist}}>{ children }</productContext.Provider>
+        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist, removeItem, incrementItem, decrementItem}}>{ children }</productContext.Provider>
     )
 }
