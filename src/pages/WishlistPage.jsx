@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { productContext } from "../contexts/ProductContProvider";
 
 export default function Wishlist(){
-    const {state} = useContext(productContext);
-
+    const {state, handleCart} = useContext(productContext);
+    const foundC = (prodName) =>  state.cartItems.find(({title}) => title === prodName);
     return (
         <div>
             <h2>My Wishlist</h2>
@@ -13,7 +14,7 @@ export default function Wishlist(){
                         <li>
                             {item.title}
                             {item.price}
-                            <button>Move to cart</button>
+                            {foundC(item.title) ?<Link to="/cart" className="go-btn">Visit cart</Link> : <button className ="add-btn"onClick={() => handleCart(item)}>Move to cart</button>}
                         </li>
                     ))
                 }
