@@ -1,0 +1,38 @@
+.parent{
+    background-color: #f3f4f6;      
+}
+.individual-prod{
+    margin: auto;
+    border: 1px solid #d1d5db;
+    width: 50%;
+    display: flex;
+    margin-top: 1rem;
+    background-color: #d1d5db;
+}
+
+.indi-img{
+    padding: 1rem;
+}
+
+.indi-btns{
+    margin: auto;
+}
+
+.other-prod{
+    list-style-type: none;
+    display: flex;
+}
+
+.other-prod-item{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-right: 1rem;
+    padding: 0.5rem;
+}
+
+.other-prod-item:hover{
+    transition: 1200ms;
+    background-color: #d1d5db;
+    border: 1px solid #d1d5db;
+}
