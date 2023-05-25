@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import reducer from "../Reducer";
 export const productContext = createContext();
 const encodedToken = localStorage.getItem("token");
@@ -18,7 +19,7 @@ export default function ProductContProvider({ children }){
     });
 
     const [isLoading, setLoading] = useState(false);
-
+    const navigate = useNavigate();
     const searchedProd = state.searchBar.length > 0
     ? state?.allProducts.filter(({ title }) =>
         title.toLowerCase().includes(state.searchBar.toLowerCase())
@@ -228,6 +229,7 @@ export default function ProductContProvider({ children }){
     }
 
     function searchHandler(e){
+        navigate("/products");
         dispatch({type: "SEARCH", payload: e.target.value});
     }
 
