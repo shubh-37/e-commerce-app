@@ -18,7 +18,14 @@ export default function ProductContProvider({ children }){
     });
 
     const [isLoading, setLoading] = useState(false);
-    const sortedProd = state.sortPrice ? state?.allProducts.sort((a,b) => state.sortPrice === "hTl" ? b.price - a.price : a.price - b.price) : state?.allProducts;
+
+    const searchedProd = state.searchBar.length > 0
+    ? state?.allProducts.filter(({ title }) =>
+        title.toLowerCase().includes(state.searchBar.toLowerCase())
+      )
+    : state?.allProducts;
+
+    const sortedProd = state.sortPrice ? searchedProd.sort((a,b) => state.sortPrice === "hTl" ? b.price - a.price : a.price - b.price) : searchedProd;
 
     const checkedProd = (() => {
         const { category } = state;
@@ -220,11 +227,15 @@ export default function ProductContProvider({ children }){
         dispatch({ type: "RATING", payload: val})
     }
 
+    function searchHandler(e){
+        dispatch({type: "SEARCH", payload: e.target.value});
+    }
+
     useEffect(() => {
         getProducts();
         getCategory();
     } , [])
     return (
-        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist, removeItem, incrementItem, decrementItem}}>{ children }</productContext.Provider>
+        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist, removeItem, incrementItem, decrementItem, searchHandler}}>{ children }</productContext.Provider>
     )
 }
