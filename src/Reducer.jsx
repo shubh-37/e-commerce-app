@@ -31,6 +31,10 @@ export default function reducer(state, action){
                 category: state.category.includes(action.payload) ? state.category.filter((item) => item !== action.payload) : [...state.category, action.payload]
             }
         }
+        case "SEARCH" : return{
+            ...state,
+            searchBar: action.payload
+        }
         default : return {
             ...state
         }
