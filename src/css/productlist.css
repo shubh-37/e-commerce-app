@@ -20,6 +20,11 @@
     border-radius: 0.2rem;
 }
 
+.prod-item:hover{
+    transition: 200ms;
+    box-shadow: 5px 5px #888888;;
+}
+
 .add-btn {
     background-color: #38bdf8;
     cursor: pointer;
@@ -28,6 +33,12 @@
     color: #ffffff;
     border: none;
     margin: 0.1rem;
+}
+
+.add-btn:hover{
+    transition: 700ms;
+    background-color: white;
+    color: #38bdf8;
 }
 
 .go-btn{
@@ -48,6 +59,12 @@
     color: #ffffff;
     border: none;
     margin: 0.1rem;
+}
+
+.wl-btn:hover{
+    transition: 700ms;
+    background-color: white;
+    color: #f472b6;
 }
 
 
