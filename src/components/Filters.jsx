@@ -6,7 +6,7 @@ export default function Filter(){
     const { sortHandler, categoryHandler, ratingHandler, state } = useContext(productContext);
     return (
         <div className="filter">
-            <div className="heading">
+            <div className="heading-filter">
                 <h2>Filters</h2>
                 <button className="clear">Clear</button>
             </div>
