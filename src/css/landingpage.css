@@ -19,7 +19,6 @@
     border: 1px solid black;
     opacity: 0.8;
     font-weight: bold;
-    color: #000000
   }
 
   .submit-btn{
@@ -30,6 +29,11 @@
     padding: 0.2rem 0.5rem;
     color: #ffffff;
     font-weight: bold;
+}
+
+.submit-btn:hover{
+    transition: 200ms;
+    box-shadow: 4px 4px #888888;
 }
 
 .link{
