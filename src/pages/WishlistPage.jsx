@@ -7,7 +7,7 @@ export default function Wishlist(){
     const foundC = (prodName) =>  state.cartItems.find(({title}) => title === prodName);
     return (
         <div>
-            <h2>My Wishlist</h2>
+            <h2>My Wishlist({state.wishlistItems.length})</h2>
             <ul>
                 {
                     state?.wishlistItems?.map(item => (

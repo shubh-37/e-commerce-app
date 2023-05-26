@@ -21,13 +21,13 @@ export default function Cart(){
                     ))
                 }
             </ul>
-            <div className="pricing">
+            {state.cartItems.length !== 0 && <div className="pricing">
                 <h3>Price Details</h3>
                 <p>Price: {finalPrice}</p>
                 <p>Delivery charges: 100</p>
                 <p>Total amount: {finalPrice+100}</p>
                 <button>Place order</button>
-            </div>
+            </div>}
         </div>
     )
 }
