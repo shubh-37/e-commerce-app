@@ -5,11 +5,12 @@ import "../css/individualprod.css";
 
 export default function Product(){
     const {prodId} = useParams();
-    const { state } = useContext(productContext);
+    const { state, handleCart, handleWishlist } = useContext(productContext);
 
     const selectedProd = state.refData.find(({id}) => id === prodId);
     const otherProd = state.refData.filter((item) => item.categoryName === selectedProd.categoryName).filter((item) => item !== selectedProd);
-    console.log(otherProd)
+    const foundC = (prodName) =>  state.cartItems.find(({title}) => title === prodName);
+    const foundWL = (prodName) => state.wishlistItems.find(({title}) => title === prodName);
     return (
         <div className="parent">
             <div className="individual-prod">
@@ -24,8 +25,8 @@ export default function Product(){
                     <p>Description: {selectedProd?.desc}</p>
                 </div>
                 <div className="indi-btns">
-                    <button className="add-btn">Add to cart</button>
-                    <button className="wl-btn">Add to wishlist</button>
+                    {foundC(selectedProd.title) ?<Link to="/cart" className="go-btn">Visit cart</Link> : <button className ="add-btn"onClick={() => handleCart(selectedProd)}>Add to cart</button>}
+                    <button onClick={() => handleWishlist(selectedProd)} disabled={foundWL(selectedProd.title)} className="wl-btn">{foundWL(selectedProd.title) ? "Added to wishlist" : "Add to wishlist"}</button>
                 </div>
             </div>
             <div>
