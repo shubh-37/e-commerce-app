@@ -29,10 +29,11 @@
     flex-grow: 1;
     margin-right: 1rem;
     padding: 0.5rem;
+    background-color: #d1d5db;
+    transition: 1200ms;
 }
 
 .other-prod-item:hover{
-    transition: 1200ms;
     background-color: #d1d5db;
     border: 1px solid #d1d5db;
 }
