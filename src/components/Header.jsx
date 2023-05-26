@@ -1,32 +1,25 @@
-import Badge from "@material-ui/core/Badge";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import SearchIcon from '@material-ui/icons/Search';
-import {Link, NavLink} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useContext } from "react";
 import { productContext } from "../contexts/ProductContProvider";
+import "../css/header.css";
 
 export default function Header(){
-    const {searchHandler} = useContext(productContext);
+    const {searchHandler, state} = useContext(productContext);
     return(
         <div className="header">
-            <NavLink to ="/"><h3>Book IT</h3></NavLink>
-            <Badge color="secondary">
-                    <SearchIcon />{" "}
-            </Badge>
-            <input onChange={(e) => searchHandler(e)} type="text" name="" id="" placeholder="Search"/>
-            <Link to="/login"><button>Login</button></Link>
-            <Link to="/signup"><button>Sign Up</button></Link>
-            <div>
-                <Badge color="secondary">
-                    <NavLink to="/cart"><ShoppingCartIcon /></NavLink>
-                </Badge>
-                <Badge color="secondary">
-                    <NavLink to="/wishlist"><FavoriteBorderIcon /></NavLink>
-                </Badge>
+            <div >
+                <NavLink to ="/" className="heading-home"><h3 >Bookworm's Stop</h3></NavLink>
+            </div>
+            <div className="search">
+                <input onChange={(e) => searchHandler(e)} type="text" name="" id="" placeholder="Search"/>
+            </div>
+            <div className="icons">
+                {/* <span data-count={state.}></span> */}
+                    <NavLink to="/cart" className="fa fa-shopping-cart" data-count={state.cartItems.length}></NavLink>
+                    <NavLink to="/wishlist" className="fa fa-heart"></NavLink>
+                    <NavLink to="/login" className="fa fa-user"></NavLink>
             </div>
         </div>
     )
 }
 
-//badgeContent={itemCount}
