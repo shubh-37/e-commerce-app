@@ -6,8 +6,8 @@ import "../css/productlist.css";
 
 export default function ProductListing(){
     const {ratedProd, handleCart, handleWishlist, state} = useContext(productContext);
-    const foundC = (prodId) =>  state.cartItems.some(({id}) => id === prodId);
-    const foundWL = (prodName) => state.wishlistItems.find(({title}) => title === prodName);
+    const foundC = (prodId) =>  state?.cartItems?.some(({id}) => id === prodId);
+    const foundWL = (prodName) => state?.wishlistItems?.find(({title}) => title === prodName);
     return (
         <div className="container">
             <div className="filter">
