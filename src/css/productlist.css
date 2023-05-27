@@ -11,18 +11,18 @@
 }
 
 .prod-item{
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--secondary-color);
     padding: 0.5rem;
     list-style-type: none;
     margin: 0.5rem;
     width: 20%;
-    background-color: #d1d5db;
+    background-color: var(--secondary-color);
     border-radius: 0.2rem;
 }
 
 .prod-item:hover{
     transition: 200ms;
-    box-shadow: 5px 5px #888888;;
+    box-shadow: 3px 4px  3px var(--primary-color);
 }
 
 .add-btn {

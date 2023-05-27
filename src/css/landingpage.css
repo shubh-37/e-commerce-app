@@ -33,7 +33,7 @@
 
 .submit-btn:hover{
     transition: 200ms;
-    box-shadow: 4px 4px #888888;
+    box-shadow: 4px 4px var(--primary-color);
 }
 
 .link{
