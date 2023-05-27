@@ -10,3 +10,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  --primary-color: #888888;
+  --secondary-color: #d1d5db;
+}
+
+::selection{
+  background-color: black;
+  color: white;
+}
