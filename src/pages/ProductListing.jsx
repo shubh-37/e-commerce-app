@@ -6,7 +6,7 @@ import "../css/productlist.css";
 
 export default function ProductListing(){
     const {ratedProd, handleCart, handleWishlist, state} = useContext(productContext);
-    const foundC = (prodName) =>  state.cartItems.find(({title}) => title === prodName);
+    const foundC = (prodId) =>  state.cartItems.some(({id}) => id === prodId);
     const foundWL = (prodName) => state.wishlistItems.find(({title}) => title === prodName);
     return (
         <div className="container">
@@ -22,7 +22,7 @@ export default function ProductListing(){
                             <p>Price: Rs {item.price}</p>
                             <p>Genre: {item.categoryName}</p>
                             <p>Rating: {item.rating} stars</p>
-                            {foundC(item.title) ?<Link to="/cart" className="go-btn">Visit cart</Link> : <button className ="add-btn"onClick={() => handleCart(item)}>Add to cart</button>}
+                            {foundC(item.id) ?<Link to="/cart" className="go-btn">Visit cart</Link> : <button className ="add-btn"onClick={() => handleCart(item)}>Add to cart</button>}
                             <button onClick={() => handleWishlist(item)} disabled={foundWL(item.title)} className="wl-btn">{foundWL(item.title) ? "Added to wishlist" : "Add to wishlist"}</button>
                         </li>
                     ))
