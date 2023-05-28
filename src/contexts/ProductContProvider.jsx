@@ -97,7 +97,6 @@ export default function ProductContProvider({ children }){
     }
 
     async function delCartItems(prodId){
-        console.log(prodId)
         try {
             const response = await fetch(`/api/user/cart/${prodId}`, {
                 method: "DELETE",
@@ -107,6 +106,20 @@ export default function ProductContProvider({ children }){
             });
             const data = await response.json();
             dispatch({type: "ADD_TO_CART", payload: data.cart});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async function delWLItems(prodId){
+        try {
+            const response = await fetch(`/api/user/wishlist/${prodId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: encodedToken
+                }
+            });
+            const data = await response.json();
+            dispatch({type: "ADD_TO_WISHLIST", payload: data.wishlist});
         } catch (error) {
             console.log(error)
         }
@@ -195,6 +208,9 @@ export default function ProductContProvider({ children }){
         addToCart(product);
         
     }
+    function removeFromWL(prodId){
+        delWLItems(prodId);
+    }
     function removeItem(productId){
         delCartItems(productId);
         
@@ -238,6 +254,6 @@ export default function ProductContProvider({ children }){
         getCategory();
     } , [])
     return (
-        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist, removeItem, incrementItem, decrementItem, searchHandler}}>{ children }</productContext.Provider>
+        <productContext.Provider value={{state, showCategoryProd, isLoading, handleCart, testLogin, sortHandler, categoryHandler, ratingHandler, ratedProd, handleWishlist, removeItem, incrementItem, decrementItem, searchHandler, removeFromWL}}>{ children }</productContext.Provider>
     )
 }
