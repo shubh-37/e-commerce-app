@@ -5,3 +5,34 @@
 .wishlist{
     background-color: #f3f4f6;
 }
+
+.wl{
+    display: flex;
+}
+
+.wl-items{
+    border: 1px solid var(--secondary-color);
+    padding: 0.5rem;
+    list-style-type: none;
+    margin: 0.5rem;
+    width: 15%;
+    background-color: var(--secondary-color);
+    border-radius: 0.2rem;
+    text-align: center;
+}
+
+.remove-btn{
+    background-color: red;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    padding: 0.4rem;
+    color: #ffffff;
+    border: none;
+    margin: 0.1rem;
+}
+
+.remove-btn:hover{
+    transition: 700ms;
+    background-color: white;
+    color: red;
+}
