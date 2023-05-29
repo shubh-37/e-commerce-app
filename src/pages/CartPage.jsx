@@ -18,7 +18,7 @@ export default function Cart(){
                                 {item.title}
                                 {item.price}
                                 <button onClick={() => incrementItem(item._id)}>+</button>{item.qty}<button onClick={() => decrementItem(item._id)}>{ item.qty === 0 ? removeItem(item._id) :"-"}</button>
-                                <button onClick={() => removeItem(item._id)}>Remove from cart</button>
+                                <button onClick={() => removeItem(item._id)} className="remove-btn">Remove from cart</button>
                                 <button onClick={() => {removeItem(item._id);handleWishlist(item)}} disabled={foundWL(item.title)} className="wl-btn">{foundWL(item.title) ? "Added to wishlist" : "Move to wishlist"}</button>
                             </li>
                         ))
