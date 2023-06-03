@@ -3,6 +3,7 @@ import EmptyCart from "../components/EmptyCart";
 import { productContext } from "../contexts/ProductContProvider";
 import { Link } from "react-router-dom";
 import "../css/cartpage.css"
+import Pricing from "../components/Pricing";
 
 export default function Cart(){
     const { state, removeItem, incrementItem, decrementItem, handleWishlist } = useContext(productContext);
@@ -35,13 +36,7 @@ export default function Cart(){
                         ))
                     }
                 </ul>
-                <div className="pricing">
-                    <h3>Price Details</h3>
-                    <p>Price: {finalPrice}</p>
-                    <p>Delivery charges: 100</p>
-                    <p>Total amount: {finalPrice+100}</p>
-                    <button className="checkout">Checkout</button>
-                </div>
+                <Pricing finalPrice={finalPrice} checker={true}/>
         </div>
         </>
     }
