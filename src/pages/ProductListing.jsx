@@ -13,9 +13,30 @@ export default function ProductListing() {
   const foundC = (prodId) => state?.cartItems?.some(({ id }) => id === prodId);
   const foundWL = (prodName) =>
     state?.wishlistItems?.find(({ title }) => title === prodName);
-  function notify() {
-    console.log("yes")
-    toast.success("Added to cart!");
+  function notify(val) {
+    if (val === "a") {
+      toast.success("Added to cart!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.info("Added to wishlist!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   }
   return (
     <div className="container">
@@ -41,14 +62,17 @@ export default function ProductListing() {
                 className="add-btn"
                 onClick={() => {
                   handleCart(item);
-                  notify();
+                  notify("a");
                 }}
               >
                 Add to cart
               </button>
             )}
             <button
-              onClick={() => handleWishlist(item)}
+              onClick={() => {
+                handleWishlist(item);
+                notify("w");
+              }}
               disabled={foundWL(item.title)}
               className="wl-btn"
             >
