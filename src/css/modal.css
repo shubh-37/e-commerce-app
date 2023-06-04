@@ -1,23 +1,9 @@
 .modal-background{
-    /* width: 100vw;
-    height: 100vh;
-    background-color: grey;
     position: absolute;
     top: 0;
     left: 0;
-    right:0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    opacity: 0.5; */
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: hidden;   
+    overflow-y: auto; 
     text-align: center;
     pointer-events: auto;
     width: 100vw;
@@ -86,4 +72,8 @@
     border-radius: 0.3rem;
     font-size: medium;
     cursor: pointer;
+}
+
+.modal-container .footer-modal .cancel-btn{
+    background-color: #e11d48;
 }
