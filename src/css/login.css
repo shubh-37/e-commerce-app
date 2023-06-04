@@ -21,7 +21,7 @@
 }
 
 .email, .pw{
-    margin: 0.2rem 1rem;
+    margin: 0rem 1rem;
     align-self: flex-start;
     width: 80%;
 }
