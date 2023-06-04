@@ -54,8 +54,11 @@ export default function ProductListing() {
             <p>Genre: {item.categoryName}</p>
             <p>Rating: {item.rating} stars</p>
             {foundC(item.id) ? (
-              <Link to="/cart" className="go-btn">
+              <Link to="/cart">
+                <button className="go-btn">
                 Visit cart
+                </button>
+                
               </Link>
             ) : (
               <button
