@@ -32,7 +32,7 @@
     padding: 0.4rem;
     color: #ffffff;
     border: none;
-    margin: 0.1rem;
+    margin: 0.5rem;
 }
 
 .add-btn:hover{
@@ -45,10 +45,10 @@
     text-decoration: none;
     border: 1px solid;
     border-radius: 0.3rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
     background-color: #10b981;
     color: white;
-    margin: 0.1rem;
+    margin: 0.5rem;
 }
 
 .wl-btn{
