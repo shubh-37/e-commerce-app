@@ -50,7 +50,7 @@ export default function Modal({ item, updateData, closeModal, noChangeModal }) {
             />
           </div>
           <div className="footer-modal">
-            <button onClick={() => noChangeModal(false)}>Cancel</button>
+            <button onClick={() => noChangeModal(false)} className="cancel-btn">Cancel</button>
             <button onClick={() => closeModal()}>Save Address</button>
           </div>
         </div>
