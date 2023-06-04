@@ -24,12 +24,15 @@ export default function AddressPage() {
   const [currAdd, setCurrAdd] = useState({});
   const [isNewOpen, setIsNewOpen] = useState(false);
   const { state } = useContext(productContext);
+  const [radioCheck, setRadioCheck] = useState(false)
 
   const finalPrice = state.cartItems.reduce(
     (acc, item) => (acc = acc + item.price * item.qty),
     0
   );
-
+    function radioChecker(event){
+      setRadioCheck(event.target.checked)
+    }
   function closeModal() {
     const updatedAdd = address.map((item) =>
       item.id === data.id ? data : item
@@ -66,47 +69,55 @@ export default function AddressPage() {
   }
   return (
     <div className="checkout-parent">
-      <ul>
-        {address?.map((item) => (
-          <li key={item.id}>
-            <div>
-              <input type="radio" name="" id="" />
-              <h4>{item.name}</h4>
-              <p>{item.address}</p>
-              <p>{item.number}</p>
-            </div>
-            <button
-              onClick={() => {
-                setIsOpen(true);
-                setCurrAdd(item);
-              }}
-            >
-              Edit
-            </button>
-            <button onClick={() => deleteAdd(item.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      {isOpen && (
-        <Modal
-          item={currAdd}
-          updateData={updateData}
-          closeModal={closeModal}
-          noChangeModal={setIsOpen}
-        />
-      )}
-      <div>
-        <button onClick={setIsNewOpen}>Add a new address</button>
-        {isNewOpen && (
+      <div className="address">
+        <ul className="address-list">
+          {address?.map((item) => (
+            <li key={item.id} className="add-item">
+              <div onChange={(e) => radioChecker(e)}>
+                <label htmlFor="">
+                  <input type="radio" name="address" id="" />
+                  <h4 className="user-name">Name: {item.name}</h4>
+                  <p className="user-add">Address: {item.address}</p>
+                  <p className="user-num">Contact Number: {item.number}</p>
+                </label>
+              </div>
+              <button
+                onClick={() => {
+                  setIsOpen(true);
+                  setCurrAdd(item);
+                }}
+                className="edit-add"
+              >
+                Edit
+              </button>
+              <button onClick={() => deleteAdd(item.id)} className="del-add">Delete</button>
+            </li>
+          ))}
+        </ul>
+        {isOpen && (
           <Modal
-            closeModal={closeSaveModal}
-            noChangeModal={setIsNewOpen}
             item={currAdd}
-            updateData={addNewData}
+            updateData={updateData}
+            closeModal={closeModal}
+            noChangeModal={setIsOpen}
           />
         )}
+        <div>
+          <button onClick={setIsNewOpen} className="new-add">
+            Add a new address
+          </button>
+          {isNewOpen && (
+            <Modal
+              closeModal={closeSaveModal}
+              noChangeModal={setIsNewOpen}
+              item={currAdd}
+              updateData={addNewData}
+            />
+          )}
+        </div>
       </div>
-      <Pricing finalPrice={finalPrice} checker={false} />
+
+      <Pricing finalPrice={finalPrice} checker={false} radioCheck={radioCheck}/>
     </div>
   );
 }
