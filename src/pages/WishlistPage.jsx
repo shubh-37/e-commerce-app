@@ -5,7 +5,14 @@ import EmptyWishlist from "../components/EmptyWishlist";
 import { productContext } from "../contexts/ProductContProvider";
 import "../css/wishlist.css";
 export default function Wishlist() {
-  const { state, handleCart, removeFromWL } = useContext(productContext);
+  const {
+    state,
+    handleCart,
+    removeFromWL,
+    incrementItem,
+    decrementItem,
+    removeItem,
+  } = useContext(productContext);
   const foundC = (prodName) =>
     state?.cartItems?.find(({ title }) => title === prodName);
   function notify(val) {
@@ -51,8 +58,30 @@ export default function Wishlist() {
                 <h3>{item.title}</h3>
                 <p>Rs. {item.price}</p>
                 {foundC(item.title) ? (
-                  <Link to="/cart" className="go-btn">
-                    Visit cart
+                  <div
+                    className="quantity"
+                    style={{ justifyContent: "center" }}
+                  >
+                    <button
+                      onClick={() => incrementItem(item._id)}
+                      className="incr-btn"
+                    >
+                      +
+                    </button>
+                    <p className="qty">{foundC(item.title).qty}</p>
+                    <button
+                      onClick={() => decrementItem(item._id)}
+                      className="dcr-btn"
+                    >
+                      {item.qty === 0 ? removeItem(item._id) : "-"}
+                    </button>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {foundC(item.title) ? (
+                  <Link to="/cart">
+                    <button className="go-btn">Visit cart</button>
                   </Link>
                 ) : (
                   <button
