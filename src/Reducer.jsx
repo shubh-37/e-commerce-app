@@ -35,6 +35,10 @@ export default function reducer(state, action){
             ...state,
             searchBar: action.payload
         }
+        case "REMOVE_ALL" : return {
+            ...state,
+            cartItems: action.payload
+        }
         default : return {
             ...state
         }
