@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext, useState } from "react";
+import OrderSummary from "../pages/OrderSummary";
+import { productContext } from "../contexts/ProductContProvider";
 
-export default function Pricing({ finalPrice, checker, radioCheck }) {
+export default function Pricing({ finalPrice, checker, radioCheck, item }) {
+  const { state, dispatch } = useContext(productContext);
+  const navigate = useNavigate();
   function orderHandler() {
     if (radioCheck) {
-      toast.success("order placed successfully");
+      const cart = state.cartItems;
+      dispatch({ type: "REMOVE_ALL", payload: [] });
+      navigate("/summary", {state: {data : cart}});
     } else {
       toast.error("Please select an address to continue", {
         position: "bottom-right",
@@ -34,13 +41,13 @@ export default function Pricing({ finalPrice, checker, radioCheck }) {
           </Link>
         </button>
       ) : (
-        <button onClick={() => orderHandler()} className="checkout">
-          <Link
-            to="/checkout"
+        <button className="checkout" onClick={() => {orderHandler()}}>
+          {/* <Link
+            to="/summary"
             style={{ textDecoration: "none", color: "black" }}
-          >
+          > */}
             Place order
-          </Link>
+          {/* </Link> */}
         </button>
       )}
     </div>
