@@ -46,10 +46,7 @@ export default function AddressPage() {
     setIsNewOpen(false);
   }
   function updateData(e, newId) {
-    console.log(typeof newId);
-    console.log(addressArray);
     const fixed = address.find(({ id }) => id === newId);
-    console.log(fixed);
     setData({
       ...fixed,
       [e.target.name]: e.target.value,
@@ -61,7 +58,6 @@ export default function AddressPage() {
       id: Math.floor(Math.random() * 1000 + 1),
       [e.target.name]: e.target.value,
     });
-    console.log(data);
   }
   function deleteAdd(itemId) {
     const updatedAdd = address.filter(({ id }) => id !== itemId);
@@ -117,7 +113,7 @@ export default function AddressPage() {
         </div>
       </div>
 
-      <Pricing finalPrice={finalPrice} checker={false} radioCheck={radioCheck}/>
+      <Pricing finalPrice={finalPrice} checker={false} radioCheck={radioCheck} item={currAdd}/>
     </div>
   );
 }
