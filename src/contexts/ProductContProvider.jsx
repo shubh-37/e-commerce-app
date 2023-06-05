@@ -15,7 +15,7 @@ export default function ProductContProvider({ children }) {
     rating: null,
     searchBar: "",
     category: [],
-    price: 200,
+    price: 500,
   });
 
   const [isLoading, setLoading] = useState(false);
@@ -211,16 +211,15 @@ export default function ProductContProvider({ children }) {
 
   async function signUpHandler(user) {
     try {
-        const response = await fetch("/api/auth/signup", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-          });
-          const data = await response.json();
-          console.log(data);
-          localStorage.setItem("token", data.encodedToken);
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await response.json();
+      localStorage.setItem("token", data.encodedToken);
     } catch (error) {}
   }
 
@@ -261,6 +260,9 @@ export default function ProductContProvider({ children }) {
   function ratingHandler(val) {
     dispatch({ type: "RATING", payload: val });
   }
+  function priceHandler(e) {
+    dispatch({ type: "PRICE", payload: e.target.value });
+  }
 
   function searchHandler(e) {
     navigate("/products");
@@ -275,6 +277,7 @@ export default function ProductContProvider({ children }) {
     <productContext.Provider
       value={{
         state,
+        dispatch,
         showCategoryProd,
         isLoading,
         handleCart,
@@ -282,6 +285,7 @@ export default function ProductContProvider({ children }) {
         sortHandler,
         categoryHandler,
         ratingHandler,
+        priceHandler,
         ratedProd,
         handleWishlist,
         removeItem,
@@ -289,7 +293,7 @@ export default function ProductContProvider({ children }) {
         decrementItem,
         searchHandler,
         removeFromWL,
-        signUpHandler
+        signUpHandler,
       }}
     >
       {children}
