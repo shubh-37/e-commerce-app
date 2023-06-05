@@ -12,6 +12,7 @@ import Login from "./pages/LoginPage";
 import Signup from "./pages/SignUpPage";
 import AddressPage from "./pages/AddressPage";
 import {ToastContainer} from "react-toastify";
+import OrderSummary from "./pages/OrderSummary";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<AddressPage />} />
+        <Route path="/summary" element={<OrderSummary />} />
       </Routes>
       <Footer />  
       <ToastContainer />
