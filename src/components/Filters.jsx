@@ -3,16 +3,16 @@ import { productContext } from "../contexts/ProductContProvider"
 import "../css/filter.css";
 
 export default function Filter(){
-    const { sortHandler, categoryHandler, ratingHandler, state } = useContext(productContext);
+    const { sortHandler, categoryHandler, ratingHandler, state, priceHandler } = useContext(productContext);
     return (
         <div className="filter">
             <div className="heading-filter">
                 <h2>Filters</h2>
                 <button className="clear">Clear</button>
             </div>
-            
+            <h3 className="sort-heading">Sort By: </h3>
             <label htmlFor="" className="sort">
-                Sort By: 
+                
                 <input type="radio" onChange={() => sortHandler("lTh")} name="price" id="" value="lTh" /> Price: Low to High
                 <input type="radio" onChange={() => sortHandler("hTl")} name="price" id="" value="hTl"/> Price: High to Low
             </label>
@@ -23,7 +23,8 @@ export default function Filter(){
                 <input type="checkbox" onChange={() => categoryHandler("horror")}name="" id="" value="horror"checked={state.category.includes("horror")}/> Horror
             </label>
             <label htmlFor="" className="price">
-                Price Range: <span>200</span><input type="range" name="" id="" min="200" max="500" step= "50"/><span>500</span>
+                Price Range: <span>200</span><input type="range" name="" id="" min="200" max="500" step= "50" value={state.price} onChange={(e) => priceHandler(e)}/><span>500</span>
+                <p>Range Selected : 200 to {state.price}</p>
             </label>
             Ratings: 
             <label htmlFor="" className="rating">
