@@ -4,17 +4,28 @@
 }
 
 .price, .rating, .sort, .category{
-    border: 1px solid;
-    margin: 1rem;
+    margin: 0.5rem 0rem;
 }
 
-.heading{
+.heading-filter{
     display: flex;
+    flex-direction: column ;
 }
 
-.rating{
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    flex-wrap: nowrap;
+.clear{
+    align-self: flex-end;
+    width: 4rem;
+    height: 2rem;
+    border: none;
+    background-color: var(--btn-primary);
+    color: white;
+    border-radius: 0.3rem;
+    font-size: medium;
+    cursor: pointer;
 }
+
+.sort-heading, .price-heading, .category-heading, .rating-heading{
+    margin-block-end: 5px;
+    margin-block-start: 5px;
+}
+
