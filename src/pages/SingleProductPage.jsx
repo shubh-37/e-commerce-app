@@ -25,7 +25,7 @@ export default function Product(){
                     <p>Description: {selectedProd?.desc}</p>
                 </div>
                 <div className="indi-btns">
-                    {foundC(selectedProd.title) ?<Link to="/cart" className="go-btn">Visit cart</Link> : <button className ="add-btn"onClick={() => handleCart(selectedProd)}>Add to cart</button>}
+                    {foundC(selectedProd.title) ?<Link to="/cart"><button className="go-btn">Visit cart</button></Link> : <button className ="add-btn"onClick={() => handleCart(selectedProd)}>Add to cart</button>}
                     <button onClick={() => handleWishlist(selectedProd)} disabled={foundWL(selectedProd.title)} className="wl-btn">{foundWL(selectedProd.title) ? "Added to wishlist" : "Add to wishlist"}</button>
                 </div>
             </div>
