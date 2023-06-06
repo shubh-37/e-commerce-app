@@ -1,7 +1,6 @@
 .login-parent{
-    position: relative;
+    min-height: calc(100% - 96px);
     width: 100%;
-    height: 85vh;
     background-color: var(--secondary-color)
 }
 .login-sub{
