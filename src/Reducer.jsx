@@ -39,6 +39,10 @@ export default function reducer(state, action){
             ...state,
             cartItems: action.payload
         }
+        case "PRICE": return {
+            ...state,
+            price: Number(action.payload)
+        }
         default : return {
             ...state
         }
