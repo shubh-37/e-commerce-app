@@ -20,12 +20,17 @@ export default function ProductContProvider({ children }) {
 
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const prodPrice =
+    state?.price !== 500
+      ? state?.allProducts?.filter(({ price }) => price <= state.price)
+      : state?.allProducts;
   const searchedProd =
     state.searchBar.length > 0
-      ? state?.allProducts.filter(({ title }) =>
+      ? prodPrice.filter(({ title }) =>
           title.toLowerCase().includes(state.searchBar.toLowerCase())
         )
-      : state?.allProducts;
+      : prodPrice;
 
   const sortedProd = state.sortPrice
     ? searchedProd.sort((a, b) =>
