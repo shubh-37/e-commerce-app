@@ -13,6 +13,7 @@ import Signup from "./pages/SignUpPage";
 import AddressPage from "./pages/AddressPage";
 import { ToastContainer } from "react-toastify";
 import OrderSummary from "./pages/OrderSummary";
+import RequiresAuth from "./components/RequiresAuth";
 
 function App() {
   return (
@@ -23,13 +24,41 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/products" element={<ProductListing />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/wishlist"
+            element={
+              <RequiresAuth>
+                <Wishlist />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <RequiresAuth>
+                <Cart />
+              </RequiresAuth>
+            }
+          />
           <Route path="/product/:prodId" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/checkout" element={<AddressPage />} />
-          <Route path="/summary" element={<OrderSummary />} />
+          <Route
+            path="/checkout"
+            element={
+              <RequiresAuth>
+                <AddressPage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/summary"
+            element={
+              <RequiresAuth>
+                <OrderSummary />
+              </RequiresAuth>
+            }
+          />
         </Routes>
       </div>
 
