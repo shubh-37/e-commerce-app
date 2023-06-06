@@ -28,6 +28,7 @@ export default function Filter() {
             name="price"
             id=""
             value="lTh"
+            checked={state.sortPrice === "lTh"}
           />{" "}
           Price: Low to High
           <input
@@ -36,6 +37,7 @@ export default function Filter() {
             name="price"
             id=""
             value="hTl"
+            checked={state.sortPrice === "hTl"}
           />{" "}
           Price: High to Low
         </label>
@@ -93,6 +95,7 @@ export default function Filter() {
             name="rating"
             id=""
             value="5"
+            checked={state.rating === "5"}
           />
           5 Stars
           <input
@@ -101,6 +104,7 @@ export default function Filter() {
             name="rating"
             id=""
             value="4"
+            checked={state.rating === "4"}
           />
           4 Stars
           <input
@@ -109,6 +113,7 @@ export default function Filter() {
             name="rating"
             id=""
             value="3"
+            checked={state.rating === "3"}
           />
           3 Stars
           <input
@@ -117,6 +122,7 @@ export default function Filter() {
             name="rating"
             id=""
             value="2"
+            checked={state.rating === "2"}
           />
           2 Stars
         </label>
