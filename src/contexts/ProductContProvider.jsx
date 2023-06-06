@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import reducer from "../Reducer";
 export const productContext = createContext();
@@ -17,8 +17,6 @@ export default function ProductContProvider({ children }) {
     category: [],
     price: 500,
   });
-
-  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const prodPrice =
@@ -94,7 +92,6 @@ export default function ProductContProvider({ children }) {
   }
 
   async function getCategory() {
-    setLoading(true);
     try {
       const response = await fetch("/api/categories");
       if (response.status === 200) {
@@ -103,8 +100,6 @@ export default function ProductContProvider({ children }) {
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -235,14 +230,17 @@ export default function ProductContProvider({ children }) {
     dispatch({ type: "SEARCH", payload: e.target.value });
   }
 
-  function clearFilter(){
-    dispatch({ type: "CLEAR", payload: {
-      sortPrice: null,
-      rating: null,
-      searchBar: "",
-      price: 500,
-      category: []
-    }})
+  function clearFilter() {
+    dispatch({
+      type: "CLEAR",
+      payload: {
+        sortPrice: null,
+        rating: null,
+        searchBar: "",
+        price: 500,
+        category: [],
+      },
+    });
   }
 
   useEffect(() => {
@@ -255,7 +253,6 @@ export default function ProductContProvider({ children }) {
         state,
         dispatch,
         showCategoryProd,
-        isLoading,
         handleCart,
         sortHandler,
         categoryHandler,
@@ -268,7 +265,7 @@ export default function ProductContProvider({ children }) {
         decrementItem,
         searchHandler,
         removeFromWL,
-        clearFilter
+        clearFilter,
       }}
     >
       {children}
