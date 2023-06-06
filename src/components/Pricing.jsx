@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useContext, useState } from "react";
-import OrderSummary from "../pages/OrderSummary";
+import { useContext } from "react";
 import { productContext } from "../contexts/ProductContProvider";
 
 export default function Pricing({ finalPrice, checker, radioCheck, item }) {
