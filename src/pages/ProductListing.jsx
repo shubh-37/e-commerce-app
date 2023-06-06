@@ -38,6 +38,11 @@ export default function ProductListing() {
       });
     }
   }
+  //if(location.pathname === "/"){ 
+  //   setCategory(["horror", "fiction"])
+  // }else{
+  //   setCategory([])
+  // }
   return (
     <div className="container">
       <div className="filter">
