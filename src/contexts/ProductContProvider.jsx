@@ -194,40 +194,6 @@ export default function ProductContProvider({ children }) {
     }
   }
 
-  async function loginTestUser() {
-    const user = {
-      email: "adarshbalika@gmail.com",
-      password: "adarshbalika",
-    };
-    try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      const data = await response.json();
-      localStorage.setItem("token", data.encodedToken);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function signUpHandler(user) {
-    try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      const data = await response.json();
-      localStorage.setItem("token", data.encodedToken);
-    } catch (error) {}
-  }
-
   function handleCart(product) {
     addToCart(product);
   }
@@ -249,11 +215,6 @@ export default function ProductContProvider({ children }) {
   function showCategoryProd(val) {
     dispatch({ type: "CHECKBOX", payload: val });
   }
-
-  function testLogin() {
-    loginTestUser();
-  }
-
   function sortHandler(val) {
     dispatch({ type: "SORT", payload: val });
   }
@@ -296,7 +257,6 @@ export default function ProductContProvider({ children }) {
         showCategoryProd,
         isLoading,
         handleCart,
-        testLogin,
         sortHandler,
         categoryHandler,
         ratingHandler,
@@ -308,7 +268,6 @@ export default function ProductContProvider({ children }) {
         decrementItem,
         searchHandler,
         removeFromWL,
-        signUpHandler,
         clearFilter
       }}
     >
