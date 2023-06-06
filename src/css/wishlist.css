@@ -22,7 +22,7 @@
 }
 
 .remove-btn{
-    background-color: red;
+    background-color: var(--btn-secondary);
     cursor: pointer;
     border-radius: 0.3rem;
     padding: 0.4rem;
@@ -34,5 +34,5 @@
 .remove-btn:hover{
     transition: 700ms;
     background-color: white;
-    color: red;
+    color: var(--btn-secondary);
 }

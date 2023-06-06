@@ -75,5 +75,5 @@
 }
 
 .modal-container .footer-modal .cancel-btn{
-    background-color: #e11d48;
+    background-color: var(--btn-secondary);
 }

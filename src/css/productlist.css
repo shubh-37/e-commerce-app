@@ -26,7 +26,7 @@
 }
 
 .add-btn {
-    background-color: #38bdf8;
+    background-color: var(--btn-primary);
     cursor: pointer;
     border-radius: 0.3rem;
     padding: 0.4rem;
@@ -43,12 +43,13 @@
 
 .go-btn{
     text-decoration: none;
-    border: 1px solid;
+    border: none;
     border-radius: 0.3rem;
     padding: 0.4rem;
     background-color: #10b981;
     color: white;
     margin: 0.5rem;
+    cursor: pointer;
 }
 
 .wl-btn{

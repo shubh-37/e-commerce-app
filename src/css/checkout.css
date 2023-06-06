@@ -16,7 +16,7 @@
     width: 150px;
     height: 45px;
     border: none;
-    background-color: #38bdf8;
+    background-color: var(--btn-primary);
     color: black;
     border-radius: 0.3rem;
     font-size: medium;
@@ -37,13 +37,13 @@
     width: 5rem;
     height: 2rem;
     border: none;
-    background-color: #38bdf8;
+    background-color: var(--btn-primary);
     color: black;
     border-radius: 0.3rem;
     cursor: pointer;
 }
 
 .del-add{
-    background-color: red;
+    background-color: var(--btn-secondary);
     color: white;
 }
