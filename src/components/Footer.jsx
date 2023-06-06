@@ -2,23 +2,23 @@ import "../css/footer.css";
 
 export default function Footer() {
   return (
-    <footer class="footer">
-      <div class="footer-heading">Connect With Us </div>
-      <ul class="footer list-non-bullet">
-        <li class="list-item-inline">
-          <a href="https://github.com/shubh-37" class="link">
+    <footer className="footer">
+      <div className="footer-heading">Connect With Us </div>
+      <ul className="footer list-non-bullet">
+        <li className="list-item-inline">
+          <a href="https://github.com/shubh-37" className="link">
             GitHub
           </a>
         </li>
-        <li class="list-item-inline">
-          <a href="https://twitter.com/shubh_37" class="link">
+        <li className="list-item-inline">
+          <a href="https://twitter.com/shubh_37" className="link">
             Twitter
           </a>
         </li>
-        <li class="list-item-inline">
+        <li className="list-item-inline">
           <a
             href="https://www.linkedin.com/in/shubh-arya-08b54b200/"
-            class="link"
+            className="link"
           >
             LinkedIn
           </a>
