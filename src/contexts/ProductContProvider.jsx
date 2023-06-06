@@ -274,6 +274,16 @@ export default function ProductContProvider({ children }) {
     dispatch({ type: "SEARCH", payload: e.target.value });
   }
 
+  function clearFilter(){
+    dispatch({ type: "CLEAR", payload: {
+      sortPrice: null,
+      rating: null,
+      searchBar: "",
+      price: 500,
+      category: []
+    }})
+  }
+
   useEffect(() => {
     getProducts();
     getCategory();
@@ -299,6 +309,7 @@ export default function ProductContProvider({ children }) {
         searchHandler,
         removeFromWL,
         signUpHandler,
+        clearFilter
       }}
     >
       {children}
