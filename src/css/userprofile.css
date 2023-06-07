@@ -1,0 +1,14 @@
+.user-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--secondary-color);
+  width: 40%;
+  box-shadow: 3px 3px 3px #888888;
+  padding-bottom: 1rem;
+}
