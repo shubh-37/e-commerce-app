@@ -1,7 +1,7 @@
 .login-parent{
     min-height: calc(100% - 96px);
     width: 100%;
-    background-color: var(--secondary-color)
+    background-color: var(--secondary-color);  
 }
 .login-sub{
     border: 1px solid var(--secondary-color);
