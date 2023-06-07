@@ -21,8 +21,10 @@ export default function AuthProvider({ children }) {
         body: JSON.stringify(user),
       });
       const data = await response.json();
-      localStorage.setItem("token", data.encodedToken);
-      setUserProfile(data.foundUser);
+      localStorage.setItem("token", data.encodedToken)
+      localStorage.setItem("firstName", data.foundUser.firstName);
+      localStorage.setItem("lastName", data.foundUser.lastName);
+      localStorage.setItem("email", data.foundUser.email);
       setIsLogin(data.encodedToken);
     } catch (error) {
       console.log(error);
