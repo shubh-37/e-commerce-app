@@ -42,7 +42,7 @@ export default function Cart() {
   }
   return (
     <>
-      {state.cartItems.length === 0 ? (
+      {state?.cartItems?.length === 0 ? (
         <EmptyCart />
       ) : (
         <>

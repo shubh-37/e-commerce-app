@@ -21,8 +21,8 @@ export default function AuthProvider({ children }) {
         body: JSON.stringify(user),
       });
       const data = await response.json();
-      setUserProfile(data.foundUser);
       localStorage.setItem("token", data.encodedToken);
+      setUserProfile(data.foundUser);
       setIsLogin(data.encodedToken);
     } catch (error) {
       console.log(error);

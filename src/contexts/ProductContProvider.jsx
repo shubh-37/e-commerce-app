@@ -2,7 +2,6 @@ import { createContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import reducer from "../Reducer";
 export const productContext = createContext();
-const encodedToken = localStorage.getItem("token");
 
 export default function ProductContProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, {
@@ -104,6 +103,7 @@ export default function ProductContProvider({ children }) {
   }
 
   async function delCartItems(prodId) {
+    const encodedToken = localStorage.getItem("token");
     try {
       const response = await fetch(`/api/user/cart/${prodId}`, {
         method: "DELETE",
@@ -118,6 +118,7 @@ export default function ProductContProvider({ children }) {
     }
   }
   async function delWLItems(prodId) {
+    const encodedToken = localStorage.getItem("token");
     try {
       const response = await fetch(`/api/user/wishlist/${prodId}`, {
         method: "DELETE",
@@ -133,6 +134,7 @@ export default function ProductContProvider({ children }) {
   }
 
   async function addToWishlist(product) {
+    const encodedToken = localStorage.getItem("token");
     try {
       const response = await fetch("/api/user/wishlist", {
         method: "POST",
@@ -150,6 +152,7 @@ export default function ProductContProvider({ children }) {
   }
 
   async function cartQty(obj) {
+    const encodedToken = localStorage.getItem("token");
     try {
       const response = await fetch(`/api/user/cart/${obj.prodId}`, {
         method: "POST",
@@ -171,6 +174,7 @@ export default function ProductContProvider({ children }) {
   }
 
   async function addToCart(product) {
+    const encodedToken = localStorage.getItem("token");
     try {
       const response = await fetch("/api/user/cart", {
         method: "POST",
