@@ -48,3 +48,11 @@
     text-decoration: none;
     color: #1d4ed8;
 }
+
+.password-container{
+    display: flex;
+}
+
+.password-toggle{
+    padding: 5px;
+}
