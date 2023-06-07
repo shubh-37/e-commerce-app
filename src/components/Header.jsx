@@ -24,6 +24,7 @@ export default function Header() {
         />
       </div>
       <div className="icons">
+        <NavLink to="/products" className="fa fa-book"></NavLink>
         <NavLink to="/cart" className="fa fa-shopping-cart cart">
           {isLogin ? <span>{state?.cartItems?.length}</span> : <></>}
         </NavLink>
