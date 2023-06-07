@@ -35,52 +35,57 @@ export default function Login() {
   return (
     <>
       {isLogin ? (
-        <UserProfile userProfile={userProfile}/>
+        <UserProfile userProfile={userProfile} />
       ) : (
         <div className="login-parent">
-          <div className="login-sub">
-            <h2 style={{ color: "var(--primary-color)" }}>Login</h2>
-            <label htmlFor="" className="email">
-              Email Address <br />
-              <input
-                type="text"
-                name=""
-                id=""
-                className="email-inp"
-                placeholder="example@gmail.com"
-              />
-            </label>
-            <label htmlFor="" className="pw">
-              Password <br />
-              <input
-                type="password"
-                name=""
-                id=""
-                className="pw-inp"
-                placeholder="shubh@123"
-              />
-            </label>
-            <button
-              className="signin-btn"
-              onClick={() => {
-                notify("u");
-              }}
-            >
-              Sign In
-            </button>
-            <Link to="/signup" className="signup-link">
-              Don't have an account? Sign Up.
-            </Link>
-            <button
-              onClick={() => {
-                loginTestUser();
-                notify("t");
-              }}
-              className="test-btn"
-            >
-              Login as test user
-            </button>
-          </div>
+          <form
+            onSubmit={() => {
+              notify("u");
+            }}
+          >
+            <div className="login-sub">
+              <h2 style={{ color: "var(--primary-color)" }}>Login</h2>
+
+              <label htmlFor="" className="email">
+                Email Address <br />
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  className="email-inp"
+                  placeholder="example@gmail.com"
+                  required
+                />
+              </label>
+              <label htmlFor="" className="pw">
+                Password <br />
+                <input
+                  type="password"
+                  name=""
+                  id=""
+                  className="pw-inp"
+                  placeholder="shubh@123"
+                  required
+                />
+              </label>
+              <button className="signin-btn" type="submit">
+                Sign In
+              </button>
+              <Link to="/signup" className="signup-link">
+                Don't have an account? Sign Up.
+              </Link>
+              <button
+                className="test-btn"
+                type="submit"
+                onClick={() => {
+                  loginTestUser();
+                  notify("t");
+                }}
+              >
+                Login as test user
+              </button>
+            </div>
+          </form>
         </div>
       )}
     </>
