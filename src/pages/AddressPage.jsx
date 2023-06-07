@@ -12,9 +12,9 @@ const addressArray = [
   },
   {
     id: 2,
-    name: "mota bhai",
-    address: "B/101, green tower, andheri-west, mumbai-400058",
-    number: 9987232477,
+    name: "Saras Arya",
+    address: "house no 11/C, Krishna Enclave, punjab-140301",
+    number: 9942332477,
   },
 ];
 export default function AddressPage() {
