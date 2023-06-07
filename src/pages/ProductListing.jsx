@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filters";
 import { productContext } from "../contexts/ProductContProvider";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { authContext } from "../contexts/AuthProvider";
 
 export default function ProductListing() {
-  const { ratedProd, handleCart, handleWishlist, state} =
+  const { ratedProd, handleCart, handleWishlist, state } =
     useContext(productContext);
   const foundC = (prodId) => state?.cartItems?.some(({ id }) => id === prodId);
   const foundWL = (prodName) =>
@@ -18,30 +18,28 @@ export default function ProductListing() {
   const { isLogin } = useContext(authContext);
 
   function notify(val) {
-    if (isLogin) {
-      if (val === "a") {
-        toast.success("Added to cart!", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      } else {
-        toast.info("Added to wishlist!", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
+    if (val === "a") {
+      toast.success("Added to cart!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (val === "w") {
+      toast.info("Added to wishlist!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       toast.error("Please login to continue!", {
         position: "bottom-right",
@@ -83,8 +81,12 @@ export default function ProductListing() {
               <button
                 className="add-btn"
                 onClick={() => {
-                  handleCart(item);
-                  notify("a");
+                  if (isLogin) {
+                    handleCart(item);
+                    notify("a");
+                  } else {
+                    notify("e");
+                  }
                 }}
               >
                 Add to cart
@@ -92,8 +94,12 @@ export default function ProductListing() {
             )}
             <button
               onClick={() => {
-                handleWishlist(item);
-                notify("w");
+                if (isLogin) {
+                  handleWishlist(item);
+                  notify("w");
+                } else {
+                  notify("e");
+                }
               }}
               disabled={foundWL(item.title)}
               className="wl-btn"

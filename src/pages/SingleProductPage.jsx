@@ -19,30 +19,28 @@ export default function Product() {
   const foundWL = (prodName) =>
     state?.wishlistItems?.find(({ title }) => title === prodName);
   function notify(val) {
-    if (isLogin) {
-      if (val === "a") {
-        toast.success("Added to cart!", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      } else {
-        toast.info("Added to wishlist!", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
+    if (val === "a") {
+      toast.success("Added to cart!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (val === "w") {
+      toast.info("Added to wishlist!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       toast.error("Please login to continue!", {
         position: "bottom-right",
@@ -78,8 +76,12 @@ export default function Product() {
             <button
               className="add-btn"
               onClick={() => {
-                handleCart(selectedProd);
-                notify("a");
+                if (isLogin) {
+                  handleCart(selectedProd);
+                  notify("a");
+                } else {
+                  notify("e");
+                }
               }}
             >
               Add to cart
@@ -87,8 +89,12 @@ export default function Product() {
           )}
           <button
             onClick={() => {
-              handleWishlist(selectedProd);
-              notify("w");
+              if (isLogin) {
+                handleWishlist(selectedProd);
+                notify("w");
+              } else {
+                notify("e");
+              }
             }}
             disabled={foundWL(selectedProd.title)}
             className="wl-btn"
