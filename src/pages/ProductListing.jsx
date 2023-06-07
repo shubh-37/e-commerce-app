@@ -22,7 +22,7 @@ export default function ProductListing() {
       if (val === "a") {
         toast.success("Added to cart!", {
           position: "bottom-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -33,7 +33,7 @@ export default function ProductListing() {
       } else {
         toast.info("Added to wishlist!", {
           position: "bottom-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -45,7 +45,7 @@ export default function ProductListing() {
     } else {
       toast.error("Please login to continue!", {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

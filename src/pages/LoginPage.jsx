@@ -13,7 +13,7 @@ export default function Login() {
     if (val === "t") {
       toast.success("Login successful as test user!", {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

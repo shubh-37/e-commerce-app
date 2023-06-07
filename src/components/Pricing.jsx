@@ -14,7 +14,7 @@ export default function Pricing({ finalPrice, checker, radioCheck, item }) {
     } else {
       toast.error("Please select an address to continue", {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -19,7 +19,7 @@ export default function Wishlist() {
     if (val === "r") {
       toast.warning("Removed from wishlist :(", {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -30,7 +30,7 @@ export default function Wishlist() {
     } else {
       toast.success("Added to cart!", {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
