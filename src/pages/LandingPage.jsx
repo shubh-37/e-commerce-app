@@ -1,23 +1,26 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { productContext } from "../contexts/ProductContProvider";
 import "../css/landingpage.css";
 
 export default function LandingPage() {
   const { state, showCategoryProd } = useContext(productContext);
+  const navigate = useNavigate();
   return (
     <div className="parent">
-    <div className="main-img">
-    <img
-        src="https://images2.imgbox.com/2f/b4/kAxjfFqv_o.jpg"
-        style={{ maxWidth: "100%", height: "auto" }}
-        alt="prod-img"
-        className="landing-img"
-      />
-      <h4 className="allProd-heading">View all products</h4>
-      <button className="allProd-btn">Books</button>
-    </div>
-      
+      <div className="main-img">
+        <img
+          src="https://images2.imgbox.com/2f/b4/kAxjfFqv_o.jpg"
+          style={{ maxWidth: "100%", height: "auto" }}
+          alt="prod-img"
+          className="landing-img"
+        />
+        <div className="content">
+          <h4 className="allProd-heading">Check out all our books in store</h4>
+          <button className="allProd-btn" onClick={() => navigate("/products")}>View books</button>
+        </div>
+      </div>
+
       <ul className="sub-parent">
         {state?.categories.map((item) => (
           <li key={item.id} className="child">
