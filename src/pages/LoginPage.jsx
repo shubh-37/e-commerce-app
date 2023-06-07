@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/login.css";
 import { toast } from "react-toastify";
 import { authContext } from "../contexts/AuthProvider";
 import UserProfile from "../components/UserProfile";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function Login() {
   const { loginTestUser, isLogin, userProfile } = useContext(authContext);
+  const [showPassword, setShowPassword] = useState(false);
   function notify(val) {
     if (val === "t") {
       toast.success("Login successful as test user!", {
@@ -32,6 +34,11 @@ export default function Login() {
       });
     }
   }
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <>
       {isLogin ? (
@@ -59,14 +66,22 @@ export default function Login() {
               </label>
               <label htmlFor="" className="pw">
                 Password <br />
-                <input
-                  type="password"
-                  name=""
-                  id=""
-                  className="pw-inp"
-                  placeholder="shubh@123"
-                  required
-                />
+                <div className="password-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name=""
+                    id=""
+                    className="pw-inp"
+                    placeholder="shubh@123"
+                    required
+                  />
+                  <span
+                    className="password-toggle"
+                    onClick={() => togglePassword()}
+                  >
+                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                  </span>
+                </div>
               </label>
               <button className="signin-btn" type="submit">
                 Sign In

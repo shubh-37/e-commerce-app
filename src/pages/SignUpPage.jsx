@@ -3,10 +3,12 @@ import { toast } from "react-toastify";
 import { useContext, useState } from "react";
 import { authContext } from "../contexts/AuthProvider";
 import UserProfile from "../components/UserProfile";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function Signup() {
   const [user, setUser] = useState({});
   const { signUpHandler, isLogin, userProfile } = useContext(authContext);
+  const [showPassword, setShowPassword] = useState(false);
   function handleInput(e) {
     setUser({
       ...user,
@@ -31,10 +33,13 @@ export default function Signup() {
     notify(e);
     signUpHandler(user);
   }
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
   return (
     <>
       {isLogin ? (
-        <UserProfile userProfile={userProfile}/>
+        <UserProfile userProfile={userProfile} />
       ) : (
         <div className="login-parent">
           <form onSubmit={(e) => clickHandler(e)} className="login-sub">
@@ -77,24 +82,41 @@ export default function Signup() {
             </label>
             <label htmlFor="" className="pw">
               Enter your password:{" "}
-              <input
-                type="password"
-                name="password"
-                id=""
-                className="pw-inp"
-                placeholder="shubh@123"
-                onChange={(e) => handleInput(e)}
-                required
-              />
+              <div className="password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name=""
+                  id=""
+                  className="pw-inp"
+                  placeholder="shubh@123"
+                  required
+                />
+                <span
+                  className="password-toggle"
+                  onClick={() => togglePassword()}
+                >
+                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </span>
+              </div>
             </label>
             <label htmlFor="" className="pw">
               Re-enter your password:{" "}
-              <input
-                type="password"
-                className="pw-inp"
-                placeholder="shubh@123"
-                required
-              />
+              <div className="password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name=""
+                  id=""
+                  className="pw-inp"
+                  placeholder="shubh@123"
+                  required
+                />
+                <span
+                  className="password-toggle"
+                  onClick={() => togglePassword()}
+                >
+                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </span>
+              </div>
             </label>
             <button type="submit" className="signin-btn">
               Sign Up
