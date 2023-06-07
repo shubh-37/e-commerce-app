@@ -41,3 +41,26 @@
     color: black;
 }
 
+.main-img{
+    position: relative;
+}
+
+.content{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 2rem;
+}
+
+.allProd-btn{
+    width: 150px;
+    height: 45px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 0.3rem;
+    font-size: medium;
+    cursor: pointer;
+}
+
