@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filters";
 import { productContext } from "../contexts/ProductContProvider";
@@ -6,27 +6,44 @@ import "../css/productlist.css";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { authContext } from "../contexts/AuthProvider";
 
 export default function ProductListing() {
-  const { ratedProd, handleCart, handleWishlist, state } =
+  const { ratedProd, handleCart, handleWishlist, state} =
     useContext(productContext);
   const foundC = (prodId) => state?.cartItems?.some(({ id }) => id === prodId);
   const foundWL = (prodName) =>
     state?.wishlistItems?.find(({ title }) => title === prodName);
+
+  const { isLogin } = useContext(authContext);
+
   function notify(val) {
-    if (val === "a") {
-      toast.success("Added to cart!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+    if (isLogin) {
+      if (val === "a") {
+        toast.success("Added to cart!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.info("Added to wishlist!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     } else {
-      toast.info("Added to wishlist!", {
+      toast.error("Please login to continue!", {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -38,7 +55,7 @@ export default function ProductListing() {
       });
     }
   }
-  //if(location.pathname === "/"){ 
+  //if(location.pathname === "/"){
   //   setCategory(["horror", "fiction"])
   // }else{
   //   setCategory([])
@@ -60,10 +77,7 @@ export default function ProductListing() {
             <p>Rating: {item.rating} stars</p>
             {foundC(item.id) ? (
               <Link to="/cart">
-                <button className="go-btn">
-                Visit cart
-                </button>
-                
+                <button className="go-btn">Visit cart</button>
               </Link>
             ) : (
               <button
