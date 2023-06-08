@@ -85,11 +85,12 @@ export default function Signup() {
               <div className="password-container">
                 <input
                   type={showPassword ? "text" : "password"}
-                  name=""
+                  name="password"
                   id=""
                   className="pw-inp"
                   placeholder="shubh@123"
                   required
+                  onChange={(e) => handleInput(e)}
                 />
                 <span
                   className="password-toggle"
