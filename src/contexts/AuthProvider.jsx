@@ -31,6 +31,28 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function loginUser(user) {
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await response.json();
+      console.log(data)
+      localStorage.setItem("token", data.encodedToken)
+      localStorage.setItem("firstName", data.foundUser.firstName);
+      localStorage.setItem("lastName", data.foundUser.lastName);
+      localStorage.setItem("email", data.foundUser.email);
+      setIsLogin(data.encodedToken);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   async function signUpHandler(user) {
     try {
       const response = await fetch("/api/auth/signup", {
@@ -42,7 +64,10 @@ export default function AuthProvider({ children }) {
       });
       const data = await response.json();
       setUserProfile(data.createdUser);
-      localStorage.setItem("token", data.encodedToken);
+      localStorage.setItem("token", data.encodedToken)
+      localStorage.setItem("firstName", data.createdUser.firstName);
+      localStorage.setItem("lastName", data.createdUser.lastName);
+      localStorage.setItem("email", data.createdUser.email);
       setIsLogin(data.encodedToken);
     } catch (error) {}
   }
@@ -51,7 +76,7 @@ export default function AuthProvider({ children }) {
     setIsLogin(undefined);
   }
   return (
-    <authContext.Provider value={{ signUpHandler, loginTestUser, encodedToken, isLogin, userProfile, removeToken }}>
+    <authContext.Provider value={{ signUpHandler, loginTestUser, encodedToken, isLogin, userProfile, removeToken, loginUser }}>
       {children}
     </authContext.Provider>
   );
