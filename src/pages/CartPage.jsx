@@ -70,8 +70,10 @@ export default function Cart() {
                       <button
                         onClick={() => decrementItem(item._id)}
                         className="dcr-btn"
+                        disabled={item.qty <= 1}
                       >
-                        {item.qty === 0 ? removeItem(item._id) : "-"}
+                        {/* {item.qty === 0 ? removeItem(item._id) : "-"} */}
+                        -
                       </button>
                     </div>
                     <button
@@ -85,7 +87,7 @@ export default function Cart() {
                     </button>
                     <button
                       onClick={() => {
-                        removeItem(item._id);
+                        // removeItem(item._id);
                         handleWishlist(item);
                         notify("m");
                       }}
