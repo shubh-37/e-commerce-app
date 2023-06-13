@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filters";
 import { productContext } from "../contexts/ProductContProvider";
@@ -16,6 +16,10 @@ export default function ProductListing() {
     state?.wishlistItems?.find(({ title }) => title === prodName);
 
   const { isLogin } = useContext(authContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function notify(val) {
     if (val === "a") {
