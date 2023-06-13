@@ -5,16 +5,19 @@ import EmptyWishlist from "../components/EmptyWishlist";
 import { productContext } from "../contexts/ProductContProvider";
 import "../css/wishlist.css";
 export default function Wishlist() {
-  const {
-    state,
-    handleCart,
-    removeFromWL,
-    incrementItem,
-    decrementItem,
-    removeItem,
-  } = useContext(productContext);
-  const foundC = (prodName) =>
-    state?.cartItems?.find(({ title }) => title === prodName);
+  const { state, handleCart, removeFromWL, incrementItem, decrementItem } =
+    useContext(productContext);
+
+  const foundC = (prodId) =>
+    state?.cartItems?.find(({ _id }) => _id === prodId);
+
+  const isTrue = (id) => {
+    if (foundC(id).qty === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   function notify(val) {
     if (val === "r") {
       toast.warning("Removed from wishlist :(", {
@@ -57,29 +60,34 @@ export default function Wishlist() {
                 </Link>
                 <h3>{item.title}</h3>
                 <p>Rs. {item.price}</p>
-                {foundC(item.title) ? (
+                {foundC(item._id) ? (
                   <div
                     className="quantity"
                     style={{ justifyContent: "center" }}
                   >
                     <button
-                      onClick={() => incrementItem(item._id)}
+                      onClick={() => {
+                        incrementItem(item._id);
+                        isTrue(item._id);
+                      }}
                       className="incr-btn"
                     >
                       +
                     </button>
-                    <p className="qty">{foundC(item.title).qty}</p>
+                    <p className="qty">{foundC(item._id).qty}</p>
                     <button
                       onClick={() => decrementItem(item._id)}
                       className="dcr-btn"
+                      disabled={isTrue(item._id)}
                     >
-                      {item.qty === 0 ? removeItem(item._id) : "-"}
+                      {" "}
+                      -
                     </button>
                   </div>
                 ) : (
                   <></>
                 )}
-                {foundC(item.title) ? (
+                {foundC(item._id) ? (
                   <Link to="/cart">
                     <button className="go-btn">Visit cart</button>
                   </Link>
