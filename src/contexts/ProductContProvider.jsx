@@ -211,9 +211,6 @@ export default function ProductContProvider({ children }) {
   function handleWishlist(prod) {
     addToWishlist(prod);
   }
-  function showCategoryProd(val) {
-    dispatch({ type: "CHECKBOX", payload: val });
-  }
   function sortHandler(val) {
     dispatch({ type: "SORT", payload: val });
   }
@@ -256,7 +253,6 @@ export default function ProductContProvider({ children }) {
       value={{
         state,
         dispatch,
-        showCategoryProd,
         handleCart,
         sortHandler,
         categoryHandler,
