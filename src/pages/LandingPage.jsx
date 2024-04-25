@@ -17,7 +17,7 @@ export default function LandingPage() {
         category: [],
       },
     });
-  }, []);
+  }, [dispatch]);
   return (
     <div className="parent">
       <div className="main-img">
